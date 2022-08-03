@@ -1,0 +1,102 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="user_MasterPage" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <link href="../StyleSheet.css" rel="stylesheet" />
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <div class="main">
+                <table style="width: 100%" class="header">
+                    <tr>
+                        <td style="width: 30%">
+                            <div class="logo">
+                                Eye<br />
+                                Opticals
+                            </div>
+                        </td>
+                        <td>
+                            <div class="lst" onclick="window.location='Default.aspx'">HOME</div>
+                            <div class="lst" onclick="window.location='Gallery.aspx'">GALLERY</div>
+                            <div class="lst" onclick="window.location='cart.aspx'">YOURCART</div>
+                            <div class="lst" onclick="window.location='dueamt.aspx'">DueAmount</div>
+                            <div class="lst">
+                                <asp:LoginStatus ID="LoginStatus1" runat="server" CssClass="lst" />
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <table style="font-weight: bolder; color: white; background: black; padding: 2px; width: 100%">
+                    <tr>
+                        <td>Offers : </td>
+                        <td>
+                            <marquee>
+            <asp:DataList ID="DataList1" runat="server" DataSourceID="SqlDataSource1" RepeatDirection="Horizontal">
+                <ItemTemplate>
+                    <asp:Label ID="offersLabel" runat="server" Text='<%# Eval("offers") %>' />
+                </ItemTemplate>
+            </asp:DataList>
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT DISTINCT [offers] FROM [offers]"></asp:SqlDataSource>
+                </marquee>
+                        </td>
+                    </tr>
+                </table>
+                <table style="width: 100%">
+                    <tr>
+                        <td class="content" style="width: 100%">
+                            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                            </asp:ContentPlaceHolder>
+                        </td>
+                    </tr>
+                </table>
+                <table style="width: 100%" class="footer" cellpadding="20">
+                    <tr>
+                        <td style="width: 30%; text-align: center">
+                            <asp:Image ID="Image3" runat="server" ImageUrl="~/map.jpg" Height="350" Width="350" />
+                        </td>
+                        <td style="width: 30%">Join With Us on :
+                        <br />
+                            <asp:HyperLink ID="flnk1" runat="server" NavigateUrl="#">
+                                <asp:Image ID="fimag1" runat="server" CssClass="fimg" ImageUrl="~/fb.png" align="middle" />
+                            </asp:HyperLink>
+                            : FaceBook<br />
+                            <br />
+                            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="#">
+                                <asp:Image ID="Image1" runat="server" CssClass="fimg" ImageUrl="~/insta.jpg" align="middle" />
+                            </asp:HyperLink>
+                            : Instagram<br />
+                            <br />
+                            <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="#">
+                                <asp:Image ID="Image2" runat="server" CssClass="fimg" ImageUrl="~/tweet.jpg" align="middle" />
+                            </asp:HyperLink>
+                            : Twitter
+                        </td>
+                        <td style="width: 30%" align="Center">Home<br />
+                            <br />
+                            FeedBack<br />
+                            <br />
+                            Gallery<br />
+                            <br />
+                            Logout
+                        </td>
+                    </tr>
+                </table>
+                <table style="width: 100%" class="footer" cellpadding="20">
+                    <tr>
+                        <td valign="bottom">Developed By: Rinal Radadiya & Vishva Dholariya (BCA Sem. VI)
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+
+        </div>
+    </form>
+</body>
+</html>
